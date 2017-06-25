@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LocalWendrModelStoreContainer" CdmEntityContainer="LocalWendrEntities">
+    <EntitySetMapping Name="Sellers">
+      <EntityTypeMapping TypeName="LocalWendrModel.Seller">
+        <MappingFragment StoreEntitySet="Sellers">
+          <ScalarProperty Name="Seller_Id" ColumnName="Seller_Id" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Store_Name" ColumnName="Store_Name" />
+          <ScalarProperty Name="LandmarkName" ColumnName="LandmarkName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductDetails">
+      <EntityTypeMapping TypeName="LocalWendrModel.ProductDetail">
+        <MappingFragment StoreEntitySet="ProductDetails">
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Availability" ColumnName="Availability" />
+          <ScalarProperty Name="Product_Price" ColumnName="Product_Price" />
+          <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Seller_Id" ColumnName="Seller_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

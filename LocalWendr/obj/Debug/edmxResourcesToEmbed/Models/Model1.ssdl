@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LocalWendrModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LocalWendr.dbo.ProductDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductDetails">
+    <Key>
+      <PropertyRef Name="Seller_Id" />
+      <PropertyRef Name="Product_Id" />
+    </Key>
+    <Property Name="Seller_Id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="Product_Id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Product_Name" Type="varchar" MaxLength="150" />
+    <Property Name="Product_Description" Type="varchar" MaxLength="500" />
+    <Property Name="Product_Price" Type="numeric" Precision="6" Scale="0" />
+    <Property Name="Availability" Type="varchar" MaxLength="10" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sellers">
+    <Key>
+      <PropertyRef Name="Seller_Id" />
+    </Key>
+    <Property Name="Seller_Id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Latitude" Type="float" />
+    <Property Name="Longitude" Type="float" />
+    <Property Name="Store_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LandmarkName" Type="varchar" MaxLength="100" />
+    <Property Name="Location" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_ProductDetails_Sellers">
+    <End Role="Sellers" Type="Self.Sellers" Multiplicity="1" />
+    <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sellers">
+        <PropertyRef Name="Seller_Id" />
+      </Principal>
+      <Dependent Role="ProductDetails">
+        <PropertyRef Name="Seller_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LocalWendrModelStoreContainer">
+    <EntitySet Name="Sellers" EntityType="Self.Sellers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductDetails" EntityType="Self.ProductDetails" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProductDetails].[Seller_Id] AS [Seller_Id], 
+    [ProductDetails].[Product_Id] AS [Product_Id], 
+    [ProductDetails].[Product_Name] AS [Product_Name], 
+    [ProductDetails].[Product_Description] AS [Product_Description], 
+    [ProductDetails].[Product_Price] AS [Product_Price], 
+    [ProductDetails].[Availability] AS [Availability], 
+    [ProductDetails].[Category] AS [Category]
+    FROM [dbo].[ProductDetails] AS [ProductDetails]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ProductDetails_Sellers" Association="Self.FK_ProductDetails_Sellers">
+      <End Role="Sellers" EntitySet="Sellers" />
+      <End Role="ProductDetails" EntitySet="ProductDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

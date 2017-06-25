@@ -1,0 +1,85 @@
+﻿@model IEnumerable<LocalWendr.Models.ViewModel>
+
+@{
+    ViewBag.Title = "SearchByCategory";
+}
+<script>
+    function PopUp()
+    {
+        $('#exampleModalLong').modal('show');
+    }
+</script>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="products" class="row list-group">
+            @foreach (var item in Model)
+            {
+                <div class="item  col-xs-3 col-lg-6">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <div class="col-lg-11">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">@item.Product_Name</h5>
+                                            </div>
+                                            <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="item  col-xs-12 col-lg-12">
+                                                <div class="thumbnail">
+                                                    <img class="group list-group-image" width="200px" height="180px" src='~/Images/@item.ImageName' alt="" />
+                                                    <div class="caption">
+                                                        <h4 class="group inner list-group-item-heading">
+                                                            @Html.DisplayFor(modelItem => item.Product_Name)
+                                                        </h4>
+                                                        <p class="group inner list-group-item-text">
+                                                            @Html.DisplayFor(modelItem => item.Product_Description)
+                                                        </p>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-md-6">
+                                                                <p class="lead">
+                                                                    RS,@Html.DisplayFor(modelItem => item.Product_Price)
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-xs-12 col-md-6">
+                                                                <a class="btn btn-success" target="_blank" href="https://www.google.co.in/maps/place/@item.Location @item.Store_Name/@item.Latitude,@item.Longitude">Show In Maps</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a style="font-size:25px" onclick="PopUp()" data-dismiss="modal" href="#">@item.Product_Name</a>
+                            <h4 class="group inner list-group-item-heading">
+                                @Html.DisplayFor(modelItem => item.Store_Name)
+                                <br />
+                                @Html.DisplayFor(modelItem => item.Location)
+                                <br />
+                                Near
+                                @Html.DisplayFor(modelItem => item.LandmarkName)
+                            </h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        RS,@Html.DisplayFor(modelItem => item.Product_Price)
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" target="_blank" href="https://www.google.co.in/maps/place/@item.Location @item.Store_Name/@item.Latitude,@item.Longitude">Show In Maps</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

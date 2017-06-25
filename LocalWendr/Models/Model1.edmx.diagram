@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f6f9fc3283443a49a8140052610d01e" Name="Diagram1">
+        <EntityTypeShape EntityType="LocalWendrModel.Seller" Width="1.5" PointX="6.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalWendrModel.ProductDetail" Width="1.5" PointX="9.125" PointY="0.875" />
+        <AssociationConnector Association="LocalWendrModel.FK_ProductDetails_Sellers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,57 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function (e) {
+        $('.search-panel .dropdown-menu').find('a').click(function (e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#", "");
+            var concept = $(this).text();
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+        debugger;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+    });
+    function showPosition(position)
+    {
+        $('#lan').val((position.coords.longitude));
+        $('#lat').val((position.coords.latitude));
+    }
+</script>
+<style>
+    body {
+        margin-top: 20px;
+        background: url('../../Images/bg_main.png')no-repeat center center fixed;
+    }
+</style>
+<div class="container" style="top:45%;height:35%;position:fixed">
+    <div class="row">
+        @using (Html.BeginForm("SearchByCategory", "Customer", FormMethod.Post))
+        {
+            <div class="col-xs-8 col-xs-offset-4 col-lg-4 col-lg-offset-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" style="width:100%" name="search_param" placeholder="Search term...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-info" value="Search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-lg-offset-3">
+                <select class="form-control" id="category" name="category" data-style="btn-info">
+                    <option value="">Anything</option>
+                    <option value="Books">Books</option>
+                    <option value="Calculator">Calculator</option>
+                    <option value="Desk Organisers">Desk Organisers</option>
+                    <option value="Desk Organisers">Drafters</option>
+                </select>
+            </div>
+
+            <input type="hidden" id="lat" name="lat" />
+            <input type="hidden" id="lan" name="lan" />
+            <input type="hidden" id="radius" name="radius" value=@ViewBag.radius />
+        }
+    </div>
+</div>
